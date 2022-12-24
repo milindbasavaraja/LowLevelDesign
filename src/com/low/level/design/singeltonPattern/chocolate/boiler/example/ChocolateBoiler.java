@@ -10,6 +10,25 @@ public class ChocolateBoiler {
     private static ChocolateBoiler uniqueChocolateBoiler;
 
     /**
+     * Use double-checked locking to reduce the use of synchronisation in getInstance()
+        private volatile static ChocolateBoiler UniqueChocolateBoiler;
+        public  static ChocolateBoiler getInstance(){
+            //Check for an instance and if there isn't one, enter a synchronised block.
+            if(uniqueChocolateBoiler == null){
+                //Note we only synchronized the first time through
+                synchronized (ChocolateBoiler.class){
+                    //once in block check again and if it is still null, create an instance.
+                    if(uniqueChocolateBoiler == null){
+                        uniqueChocolateBoiler = new ChocolateBoiler();
+                    }
+                }
+            }
+            return uniqueChocolateBoiler;
+        }
+     */
+
+
+    /**
      * This code is only started when the boiler is empty.
      */
     private ChocolateBoiler(){
@@ -21,7 +40,9 @@ public class ChocolateBoiler {
      * Making it synchronised so that in case of multithreading we don't create multiple instances.
      * By making it synchronised function, we force every thread to wait for its turn before it can enter the method.
      * No two threads may enter the method at the same time.
-     * This will degrade performance because synchronisation is expensive process.
+     * This will degrade performance by factor of 100 because synchronisation is expensive process.
+     * if performance is a major factor then create singleton instance at the beginning just as follows:
+     * private static Singleton uniqueInstance = new Singleton(); ---> this code is thread safe.
      * @return
      */
     public static synchronized ChocolateBoiler getInstance(){
