@@ -13,3 +13,4 @@ This can be done by using **command** objects. A **command** object encapsulates
 
 In this module, we will be building Remote Control which could be used for various purposes like turning on/off light, Turning On/Off/increasing/decreasing fan speed etc.
 
+**The Command Pattern** encapsulates a request as an object, thereby letting you parameterize other objects with different requests, queue or log requests, and support undoable operations.

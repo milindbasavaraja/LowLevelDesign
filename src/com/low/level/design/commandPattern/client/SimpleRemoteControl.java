@@ -1,4 +1,4 @@
-package com.low.level.design.commandPattern;
+package com.low.level.design.commandPattern.client;
 
 import com.low.level.design.commandPattern.interfaces.Command;
 
@@ -16,7 +16,7 @@ public class SimpleRemoteControl {
      * This could be called multiple times if the client of this code wanted to change the behavior of the remote button.
      * @param command
      */
-    public SimpleRemoteControl(Command command) {
+    public void setCommand(Command command) {
         this.slot = command;
     }
 
